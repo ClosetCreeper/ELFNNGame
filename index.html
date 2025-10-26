@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>E.L.F. Recon — Naughty or Nice Ops</title>
+  <style>
+    :root{
+      --bg:#0b0f14;
+      --panel:#0f1620;
+      --ink:#e2edf7;
+      --muted:#8aa0b6;
+      --accent:#98ff98;
+      --danger:#ff6b6b;
+      --gold:#f7d774;
+      --red:#c21b2f;
+      --green:#0fb36e;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      background: radial-gradient(1200px 800px at 20% -10%, #15202b 0%, var(--bg) 60%) no-repeat, var(--bg);
+      color:var(--ink);
+      display:flex; align-items:center; justify-content:center; padding:24px;
+    }
+    .app{width: min(1040px, 100%);}    
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0)) , var(--panel); border:1px solid #233245; border-radius:18px; padding:20px; box-shadow: 0 10px 40px rgba(0,0,0,.35)}
+    header{display:grid; grid-template-columns: 72px 1fr auto; gap:16px; align-items:center; margin-bottom:14px; border-bottom:1px dashed #28405a; padding-bottom:14px;}
+    .seal{ width:72px; height:72px; border-radius:50%; background: conic-gradient(from 0deg, var(--gold), #ffe9a5, var(--gold)); display:grid; place-items:center; position:relative; box-shadow: inset 0 0 0 4px #4b3e16, 0 3px 10px rgba(0,0,0,.35); }
+    .seal::before{ content:"E.L.F."; font-weight:900; letter-spacing:1px; color:#2a220c; font-size:12px; background:#f7e4a7; padding:2px 6px; border-radius:999px; box-shadow:0 0 0 2px #4b3e16 inset; transform: translateY(-2px); }
+    .seal::after{ content:"Recon"; position:absolute; bottom:8px; font-size:10px; color:#2a220c; letter-spacing:1px; background:#f7e4a7; padding:1px 6px; border-radius:999px; box-shadow:0 0 0 2px #4b3e16 inset; }
+    .title h1{margin:0; font-size:clamp(18px, 3.2vw, 26px); letter-spacing:.5px}
+    .title p{margin:4px 0 0; color:var(--muted); font-size:12px}
+    .badge{font-size:12px; padding:6px 10px; border:1px solid #2a3f55; border-radius:10px; color:#c7d6e6; background:#0c1320}
+    .badge .dot{display:inline-block; width:6px; height:6px; border-radius:50%; background:var(--red); box-shadow:0 0 8px var(--red); margin-right:6px}
+    .intro{display:grid; gap:14px; margin:16px 0 10px}
+    .intro .classification{ color:#ffb3b3; font-weight:700; letter-spacing:1px }
+    .intro .classification span{ color:#ffd5d5 }
+    .controls{display:flex; gap:10px; flex-wrap:wrap}
+    button{ border:1px solid #2a3f55; background:#0e1726; color:var(--ink); padding:10px 14px; border-radius:12px; font-weight:700; letter-spacing:.4px; cursor:pointer; transition: transform .05s ease, box-shadow .2s ease, background .2s ease; }
+    button:hover{box-shadow:0 0 0 2px #26435f inset}
+    button:active{transform:translateY(1px)}
+    .accent{background:#10281a; border-color:#184a2f}
+    .danger{background:#271016; border-color:#4b1a23}
+    .grid{display:grid; gap:12px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); margin-top:10px}
+    .incident{ border:1px solid #293e57; border-radius:14px; padding:12px; background:#0b1220; position:relative; overflow:hidden }
+    .incident h3{margin:0 0 8px; font-size:15px}
+    .meta{font-size:11px; color:#a4b7cd; opacity:.9; display:flex; gap:10px; flex-wrap:wrap}
+    .desc{margin:8px 0 10px; color:#cfe0f6; font-size:13px; line-height:1.35}
+    .choice{display:flex; gap:8px}
+    .choice button{flex:1}
+    .choice .nice{border-color:#1e5138; background:#0e2219}
+    .choice .naughty{border-color:#55212a; background:#221012}
+    .footer{display:flex; justify-content:space-between; align-items:center; margin-top:16px}
+    .footer .left{color:var(--muted); font-size:12px}
+    .submitBar{display:flex; gap:10px; align-items:center}
+    .submitBar .status{font-size:12px; color:var(--muted)}
+    .pill{display:inline-flex; align-items:center; gap:6px; padding:6px 10px; border-radius:999px; font-size:12px; border:1px solid #2a3f55; background:#0b1220}
+    .pill .led{width:8px; height:8px; border-radius:50%}
+    .success{color:var(--accent)}
+    .fail{color:var(--danger)}
+    .hidden{display:none !important}
+    .toast{position:fixed; right:20px; bottom:20px; background:#0e1422; color:#e7f3ff; border: 1px solid #25364a; border-radius:12px; padding:10px 14px; box-shadow:0 10px 25px rgba(0,0,0,.35)}
+    .final{ text-align:center; padding:20px; border:1px solid #25415a; border-radius:16px; background:#0b1320; margin-top:16px }
+    .code{ display:inline-block; margin-top:10px; font-size:22px; letter-spacing:2px; padding:8px 14px; border-radius:12px; background:#081d12; color:#a4ffd3; border:1px dashed #1c4d37; box-shadow: inset 0 0 15px rgba(16, 90, 63,.4), 0 0 18px rgba(9, 187, 120,.2); }
+  </style>
+</head>
+<body>
+  <main class="app">
+    <div class="card">
+      <header>
+        <div class="seal" aria-hidden="true"></div>
+        <div class="title">
+          <h1>NORTH POLE — E.L.F. RECON DIRECTORATE</h1>
+          <p>Division: Behavior Intelligence (“Nice-Int”), op codename: <strong>FIR NEEDLE</strong></p>
+        </div>
+        <div class="badge"><span class="dot"></span> STATUS: STANDBY</div>
+      </header>
+      <section class="intro" id="intro">
+        <div class="classification">CLASSIFICATION: <span>HOLLY JOLLY // EYES ONLY</span></div>
+        <p>
+          Agent, you will review <strong>10</strong> incident reports from the field and assign each elf to the
+          <span class="success">Nice</span> or <span class="fail">Naughty</span> list. Reports are drawn at random from our case bank.
+          You must score a <strong>perfect 10/10</strong> to pass. Fail and the sim resets with a new set.
+        </p>
+        <div class="controls">
+          <button id="begin" class="accent">▶ Begin</button>
+          <button id="how">ℹ️ Briefing</button>
+        </div>
+        <div id="howPanel" class="hidden">
+          <ul>
+            <li>Read each incident and choose <em>Nice</em> or <em>Naughty</em>.</li>
+            <li>Submit at the bottom—no partial credit. Debrief reveals your misses.</li>
+            <li>Pass to receive a mission code at the end.</li>
+          </ul>
+        </div>
+      </section>
+      <section id="game" class="hidden">
+        <div class="grid" id="incidentGrid" aria-live="polite"></div>
+        <div class="footer">
+          <div class="left">
+            <span class="pill" id="counterPill"><span class="led" style="background:var(--green)"></span> 0/10 classified</span>
+          </div>
+          <div class="submitBar">
+            <span class="status" id="status">Awaiting decisions…</span>
+            <button id="shuffle">↻ New Set</button>
+            <button id="submit" class="accent">Submit for Review</button>
+          </div>
+        </div>
+        <div id="result" class="hidden"></div>
+      </section>
+      <section id="finalScreen" class="hidden">
+        <div class="final">
+          <h2>✅ Clearance Granted</h2>
+          <p>Impeccable work, agent. Write this on your D.E.E.R. report:</p>
+          <div class="code" id="secret">INC-90078</div>
+          <div style="margin-top:14px; display:flex; gap:10px; justify-content:center; flex-wrap:wrap">
+            <button id="playAgain">Play Again</button>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+</body>
+</html>
