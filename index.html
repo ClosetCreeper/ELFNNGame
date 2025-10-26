@@ -6,15 +6,15 @@
   <title>E.L.F. Recon — Naughty or Nice Ops</title>
   <style>
     :root{
-      --bg:#0b0f14;
-      --panel:#0f1620;
-      --ink:#e2edf7;
-      --muted:#8aa0b6;
-      --accent:#98ff98;
-      --danger:#ff6b6b;
-      --gold:#f7d774;
-      --red:#c21b2f;
-      --green:#0fb36e;
+      --bg:#0b0f14;          /* Night ops */
+      --panel:#0f1620;       /* Case file panel */
+      --ink:#e2edf7;         /* Primary text */
+      --muted:#8aa0b6;       /* Secondary text */
+      --accent:#98ff98;      /* Nice */
+      --danger:#ff6b6b;      /* Naughty */
+      --gold:#f7d774;        /* North Pole seal */
+      --red:#c21b2f;         /* Government vibe */
+      --green:#0fb36e;       /* Verified vibe */
     }
     *{box-sizing:border-box}
     html,body{height:100%}
@@ -26,7 +26,10 @@
     }
     .app{width: min(1040px, 100%);}    
     .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0)) , var(--panel); border:1px solid #233245; border-radius:18px; padding:20px; box-shadow: 0 10px 40px rgba(0,0,0,.35)}
-    header{display:grid; grid-template-columns: 72px 1fr auto; gap:16px; align-items:center; margin-bottom:14px; border-bottom:1px dashed #28405a; padding-bottom:14px;}
+    header{
+      display:grid; grid-template-columns: 72px 1fr auto; gap:16px; align-items:center; margin-bottom:14px;
+      border-bottom:1px dashed #28405a; padding-bottom:14px;
+    }
     .seal{ width:72px; height:72px; border-radius:50%; background: conic-gradient(from 0deg, var(--gold), #ffe9a5, var(--gold)); display:grid; place-items:center; position:relative; box-shadow: inset 0 0 0 4px #4b3e16, 0 3px 10px rgba(0,0,0,.35); }
     .seal::before{ content:"E.L.F."; font-weight:900; letter-spacing:1px; color:#2a220c; font-size:12px; background:#f7e4a7; padding:2px 6px; border-radius:999px; box-shadow:0 0 0 2px #4b3e16 inset; transform: translateY(-2px); }
     .seal::after{ content:"Recon"; position:absolute; bottom:8px; font-size:10px; color:#2a220c; letter-spacing:1px; background:#f7e4a7; padding:1px 6px; border-radius:999px; box-shadow:0 0 0 2px #4b3e16 inset; }
@@ -34,6 +37,7 @@
     .title p{margin:4px 0 0; color:var(--muted); font-size:12px}
     .badge{font-size:12px; padding:6px 10px; border:1px solid #2a3f55; border-radius:10px; color:#c7d6e6; background:#0c1320}
     .badge .dot{display:inline-block; width:6px; height:6px; border-radius:50%; background:var(--red); box-shadow:0 0 8px var(--red); margin-right:6px}
+
     .intro{display:grid; gap:14px; margin:16px 0 10px}
     .intro .classification{ color:#ffb3b3; font-weight:700; letter-spacing:1px }
     .intro .classification span{ color:#ffd5d5 }
@@ -43,7 +47,9 @@
     button:active{transform:translateY(1px)}
     .accent{background:#10281a; border-color:#184a2f}
     .danger{background:#271016; border-color:#4b1a23}
+
     .grid{display:grid; gap:12px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); margin-top:10px}
+
     .incident{ border:1px solid #293e57; border-radius:14px; padding:12px; background:#0b1220; position:relative; overflow:hidden }
     .incident h3{margin:0 0 8px; font-size:15px}
     .meta{font-size:11px; color:#a4b7cd; opacity:.9; display:flex; gap:10px; flex-wrap:wrap}
@@ -52,18 +58,29 @@
     .choice button{flex:1}
     .choice .nice{border-color:#1e5138; background:#0e2219}
     .choice .naughty{border-color:#55212a; background:#221012}
+
     .footer{display:flex; justify-content:space-between; align-items:center; margin-top:16px}
     .footer .left{color:var(--muted); font-size:12px}
+
     .submitBar{display:flex; gap:10px; align-items:center}
     .submitBar .status{font-size:12px; color:var(--muted)}
+
     .pill{display:inline-flex; align-items:center; gap:6px; padding:6px 10px; border-radius:999px; font-size:12px; border:1px solid #2a3f55; background:#0b1220}
     .pill .led{width:8px; height:8px; border-radius:50%}
+
     .success{color:var(--accent)}
     .fail{color:var(--danger)}
     .hidden{display:none !important}
+
     .toast{position:fixed; right:20px; bottom:20px; background:#0e1422; color:#e7f3ff; border: 1px solid #25364a; border-radius:12px; padding:10px 14px; box-shadow:0 10px 25px rgba(0,0,0,.35)}
+
     .final{ text-align:center; padding:20px; border:1px solid #25415a; border-radius:16px; background:#0b1320; margin-top:16px }
     .code{ display:inline-block; margin-top:10px; font-size:22px; letter-spacing:2px; padding:8px 14px; border-radius:12px; background:#081d12; color:#a4ffd3; border:1px dashed #1c4d37; box-shadow: inset 0 0 15px rgba(16, 90, 63,.4), 0 0 18px rgba(9, 187, 120,.2); }
+
+    @media (max-width:560px){
+      header{grid-template-columns: 56px 1fr;}
+      .badge{grid-column: 1 / -1; justify-self:start}
+    }
   </style>
 </head>
 <body>
@@ -77,6 +94,7 @@
         </div>
         <div class="badge"><span class="dot"></span> STATUS: STANDBY</div>
       </header>
+
       <section class="intro" id="intro">
         <div class="classification">CLASSIFICATION: <span>HOLLY JOLLY // EYES ONLY</span></div>
         <p>
@@ -96,6 +114,7 @@
           </ul>
         </div>
       </section>
+
       <section id="game" class="hidden">
         <div class="grid" id="incidentGrid" aria-live="polite"></div>
         <div class="footer">
@@ -110,17 +129,256 @@
         </div>
         <div id="result" class="hidden"></div>
       </section>
+
       <section id="finalScreen" class="hidden">
         <div class="final">
           <h2>✅ Clearance Granted</h2>
-          <p>Impeccable work, agent. Write this on your D.E.E.R. report:</p>
+          <p>Impeccable work, agent. Present the following to Operations for your field badge:</p>
           <div class="code" id="secret">INC-90078</div>
           <div style="margin-top:14px; display:flex; gap:10px; justify-content:center; flex-wrap:wrap">
+            <button id="printBadge">🪪 Print Field Badge</button>
             <button id="playAgain">Play Again</button>
           </div>
         </div>
       </section>
     </div>
   </main>
+
+  <template id="incidentTpl">
+    <article class="incident" data-id="">
+      <h3></h3>
+      <div class="meta"></div>
+      <p class="desc"></p>
+      <div class="choice">
+        <button class="nice">Nice</button>
+        <button class="naughty">Naughty</button>
+      </div>
+    </article>
+  </template>
+
+  <div class="toast hidden" id="toast">Set reshuffled.</div>
+
+  <script>
+  (()=>{
+    'use strict';
+    // Encapsulate to avoid global collisions (e.g., duplicate var names from other scripts)
+
+    // ==== CONFIG (editable) ====================================================
+    const SECRET_CODE = "INC-90078"; // Change if you want a new code
+
+    // 20 incident templates — tweak freely. answer: "nice" | "naughty"
+    const INCIDENTS = [
+      { id: "ELF-002", title: "Cookie Redistribution Protocol", tags:["logistics","kitchen"], desc: "Pepper Minstix evenly re-allocated spare cookies from break room to late-shift elves without asking for credit.", answer: "nice" },
+      { id: "ELF-014", title: "Sleigh Hangar Door", tags:["facility","ops"], desc: "Bushy Evergreen propped open the hangar door with a toolbox, causing heat loss during reindeer warm-ups.", answer: "naughty" },
+      { id: "ELF-019", title: "Toy QA Anomaly (Yo-yos)", tags:["qa","toys"], desc: "Shinny Upatree found a knot defect, pulled an all-nighter to isolate a bad batch, and filed complete paperwork.", answer: "nice" },
+      { id: "ELF-021", title: "Unauthorized Caroling", tags:["comms"], desc: "Wunorse Openslae hijacked the workshop PA to play 8-bit carols at 120 dB. Morale up; OSHA down.", answer: "naughty" },
+      { id: "ELF-026", title: "Reindeer Fuel Mix", tags:["stables","safety"], desc: "Sugarplum Mary corrected a mislabeled barrel (molasses vs. maple) before feeding—prevented Dasher stomachache cascade.", answer: "nice" },
+      { id: "ELF-031", title: "Wrapping Paper Conservation", tags:["sustainability"], desc: "Alabaster Snowball redesigned gift wrap sizes to reduce scraps by 22%.", answer: "nice" },
+      { id: "ELF-037", title: "Drone Test Over Village", tags:["airspace","rules"], desc: "Peppermint Stick flew a prototype quad over the Gingerbread Village without NOTAM or permission.", answer: "naughty" },
+      { id: "ELF-042", title: "Cocoa Machine Calibration", tags:["canteen","maintenance"], desc: "Tinsel Bell shut down the cocoa machine and logged repair when temp sensor spiked above safe range.", answer: "nice" },
+      { id: "ELF-048", title: "List Tampering Rumor", tags:["infosec"], desc: "Snowflake Flurry peeked at the Big List to search their own name. No edits, but access was not authorized.", answer: "naughty" },
+      { id: "ELF-050", title: "Sled Skid Marks", tags:["training"], desc: "Crinkle Kringle practiced tight turns in the parking lot and wiped out three candy-cane bollards.", answer: "naughty" },
+      { id: "ELF-055", title: "Understudy Success", tags:["teamwork"], desc: "Gumdrop Grace covered for a sick elf in Plushies and trained two rookies on the line, on time delivery maintained.", answer: "nice" },
+      { id: "ELF-061", title: "C12 Network Patch", tags:["IT"], desc: "Frosty Byte patched the Naughty/Nice API vulnerability and wrote a postmortem with reproduction steps.", answer: "nice" },
+      { id: "ELF-067", title: "Glitter Spill", tags:["facility","safety"], desc: "Jingle Jangles spilled 3kg of ultra-fine glitter and left it for Night Crew because it looked \"festive.\"", answer: "naughty" },
+      { id: "ELF-073", title: "Sack Weight Limits", tags:["ergonomics"], desc: "Twinkle Toes relabeled sacks with max loads, preventing back strain per Mrs. Claus' directive.", answer: "nice" },
+      { id: "ELF-078", title: "Cookie Jar Lockpick", tags:["conduct"], desc: "Pine Cone taught rookies to pick the cookie jar lock \"for security training.\"", answer: "naughty" },
+      { id: "ELF-083", title: "Labeling in Braille", tags:["accessibility"], desc: "Holly Sprig added Braille to gift labels for visually impaired recipients after noticing a gap.", answer: "nice" },
+      { id: "ELF-089", title: "Snowball Crossfire", tags:["rec","safety"], desc: "Merry Mint started a snowball skirmish during forklift operations. No injuries, but unsafe mix.", answer: "naughty" },
+      { id: "ELF-094", title: "Reindeer Rest Day", tags:["animal welfare"], desc: "Icicle Ivy proposed staggered rest days for reindeer, approved by Vet Team, improved endurance.", answer: "nice" },
+      { id: "ELF-097", title: "CCTV Sticker Prank", tags:["infosec","prank"], desc: "Spruce Bruce put googly eyes on security cameras. Funny? Yes. Acceptable? No.", answer: "naughty" },
+      { id: "ELF-101", title: "Emergency Drill Lead", tags:["safety"], desc: "Cedar Sleet ran a flawless evacuation drill with a 2m12s clear time and complete roster check.", answer: "nice" },
+    ];
+
+    // ==== STATE ===============================================================
+    const el = sel => document.querySelector(sel);
+    const grid = el('#incidentGrid');
+    const tpl = el('#incidentTpl');
+    const result = el('#result');
+    const statusEl = el('#status');
+    const counterPill = el('#counterPill');
+    const toast = el('#toast');
+
+    let currentSet = [];
+    let decisions = new Map(); // id -> 'nice'|'naughty'
+
+    // ==== HELPERS =============================================================
+    function pickRandom(arr, n){
+      const copy = [...arr];
+      for (let i = copy.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [copy[i], copy[j]] = [copy[j], copy[i]];
+      }
+      return copy.slice(0, n);
+    }
+
+    function renderSet(){
+      grid.innerHTML = '';
+      decisions = new Map();
+      currentSet.forEach(item => {
+        const node = tpl.content.firstElementChild.cloneNode(true);
+        node.dataset.id = item.id;
+        node.querySelector('h3').textContent = `${item.id} — ${item.title}`;
+        node.querySelector('.meta').textContent = `TAGS: ${item.tags.join(', ')}`;
+        node.querySelector('.desc').textContent = item.desc;
+        const niceBtn = node.querySelector('.nice');
+        const naughtyBtn = node.querySelector('.naughty');
+        niceBtn.addEventListener('click', () => select(node, 'nice'));
+        naughtyBtn.addEventListener('click', () => select(node, 'naughty'));
+        grid.appendChild(node);
+      });
+      updateCounter();
+      statusEl.textContent = 'Awaiting decisions…';
+      result.classList.add('hidden');
+    }
+
+    function select(node, choice){
+      const id = node.dataset.id;
+      decisions.set(id, choice);
+      // button visual state
+      node.querySelectorAll('.choice button').forEach(b => b.style.outline = 'none');
+      if(choice === 'nice'){
+        node.querySelector('.nice').style.outline = '2px solid var(--accent)';
+        node.querySelector('.naughty').style.outline = 'none';
+      } else {
+        node.querySelector('.naughty').style.outline = '2px solid var(--danger)';
+        node.querySelector('.nice').style.outline = 'none';
+      }
+      updateCounter();
+    }
+
+    function updateCounter(){
+      const count = decisions.size;
+      counterPill.innerHTML = `<span class="led" style="background:${count===10?'var(--green)':'#5b6c7e'}"></span> ${count}/10 classified`;
+    }
+
+    function evaluate(){
+      if(decisions.size < 10){
+        statusEl.textContent = `Classify all reports before submission (${decisions.size}/10).`;
+        pulse(statusEl);
+        return;
+      }
+      let correct = 0; const misses = [];
+      currentSet.forEach(item => {
+        const guess = decisions.get(item.id);
+        if(guess === item.answer) correct++; else misses.push({id:item.id, need:item.answer, got:guess, title:item.title});
+      });
+      if(correct === 10){
+        win();
+      } else {
+        fail(misses, correct);
+      }
+    }
+
+    function win(){
+      el('#game').classList.add('hidden');
+      el('#finalScreen').classList.remove('hidden');
+      el('#secret').textContent = SECRET_CODE;
+      setBadgeStatus('ACTIVE', true);
+    }
+
+    function fail(misses, correct){
+      const pct = Math.round((correct/10)*100);
+      const lines = misses.map(m=>`• ${m.id} — ${m.title} → <span class="fail">${m.got.toUpperCase()}</span> (should be <span class="success">${m.need.toUpperCase()}</span>)`).join('<br>');
+      result.classList.remove('hidden');
+      result.innerHTML = `
+        <div class="final">
+          <h2>❌ Clearance Denied</h2>
+          <p>You scored <strong>${correct}/10</strong> (${pct}%). Debrief:</p>
+          <p style="text-align:left">${lines || 'No misses logged.'}</p>
+          <div style="margin-top:10px; display:flex; gap:8px; justify-content:center; flex-wrap:wrap">
+            <button id="retry" class="danger">Retry (New Set)</button>
+            <button id="reviewSet">Review Same Set</button>
+          </div>
+        </div>`;
+      document.querySelector('#retry').addEventListener('click', () => { newSet(); toastMsg('New random set issued.'); });
+      document.querySelector('#reviewSet').addEventListener('click', () => { decisions = new Map(); updateCounter(); statusEl.textContent = 'Re-classify and resubmit.'; window.scrollTo({top:0, behavior:'smooth'}); });
+      pulse(result);
+    }
+
+    function newSet(){
+      currentSet = pickRandom(INCIDENTS, 10);
+      renderSet();
+    }
+
+    function toastMsg(msg){
+      toast.textContent = msg; toast.classList.remove('hidden');
+      setTimeout(()=>toast.classList.add('hidden'), 1500);
+    }
+
+    function pulse(node){
+      if (node && node.animate) node.animate([{opacity:1},{opacity:.25},{opacity:1}],{duration:600});
+    }
+
+    function setBadgeStatus(text, active){
+      const badge = document.querySelector('.badge');
+      if (!badge) return;
+      badge.innerHTML = `<span class="dot" style="background:${active?'var(--green)':'var(--red)'}"></span> STATUS: ${text}`;
+    }
+
+    // Simple printable badge
+    function openBadge(){
+      const w = window.open('', 'badge');
+      const html = `<!doctype html><html><head><meta charset="utf-8"><title>E.L.F. Badge</title>
+        <style>
+          body{font-family:ui-monospace, Menlo, monospace; background:#f8fafc; color:#0b1220; padding:24px}
+          .badge{width:340px; border:2px solid #0b1220; border-radius:16px; padding:16px; background:white}
+          h1{font-size:18px; margin:0 0 6px}
+          .seal{width:56px; height:56px; border-radius:50%; background: conic-gradient(from 0deg, #f7d774, #ffe9a5, #f7d774); box-shadow: inset 0 0 0 3px #4b3e16}
+          .row{display:flex; gap:12px; align-items:center}
+          .code{margin-top:8px; font-weight:800; font-size:20px}
+          .small{font-size:12px; color:#334155}
+        </style></head><body>
+        <div class="badge">
+          <div class="row"><div class="seal"></div><div><h1>NORTH POLE — E.L.F. RECON</h1><div class="small">Field Certification</div></div></div>
+          <div class="code">${SECRET_CODE}</div>
+          <div class="small" style="margin-top:10px">Verified by Nice-Int • ${new Date().toLocaleDateString()}</div>
+        </div>
+      </body></html>`;
+      w.document.write(html); w.document.close(); w.focus();
+      setTimeout(()=>w.print(), 250);
+    }
+
+    // ==== WIRE UP =============================================================
+    document.querySelector('#begin').addEventListener('click', ()=>{
+      document.querySelector('#intro').classList.add('hidden');
+      document.querySelector('#game').classList.remove('hidden');
+      setBadgeStatus('ACTIVE', true);
+      newSet();
+      window.scrollTo({top:0, behavior:'smooth'});
+    });
+
+    document.querySelector('#how').addEventListener('click', ()=> document.querySelector('#howPanel').classList.toggle('hidden'));
+    document.querySelector('#shuffle').addEventListener('click', ()=> { newSet(); toastMsg('Set reshuffled.'); });
+    document.querySelector('#submit').addEventListener('click', evaluate);
+    document.querySelector('#playAgain')?.addEventListener('click', ()=>{ document.querySelector('#finalScreen').classList.add('hidden'); document.querySelector('#intro').classList.remove('hidden'); setBadgeStatus('STANDBY', false); });
+    document.querySelector('#printBadge')?.addEventListener('click', openBadge);
+
+    // ==== SELF-TESTS (simple runtime checks; non-intrusive) ===================
+    (function selfTests(){
+      const errs = [];
+      // 1) Incident bank size
+      if (INCIDENTS.length !== 20) errs.push(`Expected 20 incidents, found ${INCIDENTS.length}`);
+      // 2) Valid answers and unique IDs
+      const ids = new Set();
+      for (const it of INCIDENTS){
+        if (it.answer !== 'nice' && it.answer !== 'naughty') errs.push(`Invalid answer for ${it.id}`);
+        if (ids.has(it.id)) errs.push(`Duplicate ID detected: ${it.id}`); else ids.add(it.id);
+      }
+      // 3) Random picker uniqueness length
+      const s = pickRandom(INCIDENTS, 10);
+      if (s.length !== 10) errs.push('pickRandom did not return 10 items');
+      const uniq = new Set(s.map(x=>x.id));
+      if (uniq.size !== 10) errs.push('pickRandom returned duplicates');
+      // Report
+      if (errs.length){
+        console.error('[E.L.F. Self-Tests FAILED]', errs);
+      } else {
+        console.log('[E.L.F. Self-Tests PASSED]');
+      }
+    })();
+
+  })();
+  </script>
 </body>
 </html>
