@@ -133,10 +133,9 @@
       <section id="finalScreen" class="hidden">
         <div class="final">
           <h2>✅ Clearance Granted</h2>
-          <p>Impeccable work, agent. Present the following to Operations for your field badge:</p>
+          <p>Impeccable work, agent. Write the following on your D.E.E.R Report Form for the day!:</p>
           <div class="code" id="secret">INC-90078</div>
           <div style="margin-top:14px; display:flex; gap:10px; justify-content:center; flex-wrap:wrap">
-            <button id="printBadge">🪪 Print Field Badge</button>
             <button id="playAgain">Play Again</button>
           </div>
         </div>
@@ -352,7 +351,6 @@
     document.querySelector('#shuffle').addEventListener('click', ()=> { newSet(); toastMsg('Set reshuffled.'); });
     document.querySelector('#submit').addEventListener('click', evaluate);
     document.querySelector('#playAgain')?.addEventListener('click', ()=>{ document.querySelector('#finalScreen').classList.add('hidden'); document.querySelector('#intro').classList.remove('hidden'); setBadgeStatus('STANDBY', false); });
-    document.querySelector('#printBadge')?.addEventListener('click', openBadge);
 
     // ==== SELF-TESTS (simple runtime checks; non-intrusive) ===================
     (function selfTests(){
